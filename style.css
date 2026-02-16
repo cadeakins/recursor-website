@@ -1,0 +1,223 @@
+/*
+  Intel Sustainability Timeline Styles
+  - Mobile-first, responsive design
+  - Uses Flexbox for layout
+  - Intel-inspired fonts and colors
+  - Timeline cards reveal details on hover
+*/
+
+/* 1. Import Intel-like font (Roboto as a close match) */
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
+body {
+  font-family: 'Roboto', Arial, sans-serif; /* Clean, modern font */
+  background: #f5f7fa; /* Light background */
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: #0068b5; /* Intel blue */
+  color: #fff;
+  padding: 2rem 1rem 1rem 1rem;
+  text-align: center;
+}
+
+header img {
+  width: 120px;
+  margin-bottom: 1rem;
+}
+
+header h1 {
+  font-size: 3rem; /* Make the title much bigger */
+  margin: 0.5rem 0;
+  font-weight: 800; /* Make the title extra bold */
+}
+
+header p {
+  font-size: 1rem;
+  margin: 2rem auto 2rem auto; /* This centers the paragraph block */
+  text-align: center;          /* This centers the text inside the paragraph */
+  color: #fff;                 /* White text for good contrast */
+  max-width: 600px;            /* Limit width for readability */
+}
+
+/* Stylish blue gradient divider for header */
+header hr {
+  border: none; /* Removes the default border */
+  height: 5px; /* Makes the divider thicker */
+  width: 80px; /* Sets the divider width */
+  margin: 1.5rem auto; /* Adds space above and below, centers the divider */
+  border-radius: 3px; /* Rounds the edges */
+  background: linear-gradient(90deg, #00baff, #b6e9ff 70%); /* Blue gradient for Intel style */
+  box-shadow: 0 2px 8px rgba(0,104,181,0.15); /* Soft blue shadow for depth */
+}
+
+/* 2. Timeline Section Styles */
+section {
+  display: flex;
+  flex-direction: column; /* Stack cards vertically on mobile */
+  gap: 1.5rem;
+  padding: 1rem;
+  max-width: 100vw;
+  overflow-x: auto;
+}
+
+/* 3. Timeline Card Styles */
+section > div {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  padding: 1rem;
+  min-width: 320px;
+  max-width: 320px;
+  margin: 0 auto;
+  position: relative;
+  transition: box-shadow 0.2s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden; /* Ensures overlay stays inside card */
+}
+
+/* Card content wrapper for year, title, and image */
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Overlay for description */
+.card-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(27, 97, 158, 0.90); /* Deep Intel blue, mostly opaque */
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 12px;
+  z-index: 2;
+}
+
+.card-overlay p {
+  color: #fff !important;
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(27, 97, 158, 0.90); /* Deep Intel blue, mostly opaque */
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 12px;
+  z-index: 2;
+}
+
+.card-overlay p {
+  color: #fff !important;
+}
+
+section > div:hover .card-overlay,
+section > div:focus-within .card-overlay {
+  opacity: 1;
+}
+
+section h2 {
+  color: #0068b5;
+  font-size: 1.3rem;
+  margin: 0.2rem 0 0.1rem 0;
+  font-weight: 700;
+}
+
+section h3 {
+  color: #003c71;
+  font-size: 1rem;
+  margin: 0.1rem 0 0.5rem 0;
+  font-weight: 400;
+}
+
+section img {
+  width: 200px;         /* Set a fixed width for all images */
+  height: 120px;        /* Set a fixed height for all images */
+  max-width: 200px;     /* Prevent images from getting larger than this */
+  min-width: 200px;     /* Prevent images from getting smaller than this */
+  min-height: 120px;    /* Prevent images from getting smaller than this */
+  max-height: 120px;    /* Prevent images from getting larger than this */
+  border-radius: 8px;   /* Rounded corners for style */
+  margin: 0.5rem 0;
+  object-fit: cover;    /* Crop images to fill the box, keeping them neat */
+  display: block;       /* Remove extra space below images */
+}
+
+/* 4. Hide card description by default, show on hover */
+section > div p {
+  display: block;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Hide the overlay on mobile tap (optional: for accessibility, keep focus) */
+@media (hover: none) and (pointer: coarse) {
+  section > div:active .card-overlay {
+    opacity: 1;
+  }
+}
+
+/* 5. Responsive: Horizontal scroll on larger screens */
+@media (min-width: 700px) {
+  section {
+    flex-direction: row; /* Cards in a row */
+    justify-content: flex-start;
+    align-items: stretch;
+    overflow-x: auto;
+    gap: 2rem;
+    padding: 2rem 1rem;
+  }
+  section > div {
+    min-width: 250px;
+    max-width: 300px;
+    margin: 0;
+  }
+}
+
+/* 6. Responsive: Make text larger on big screens */
+@media (min-width: 1000px) {
+  header h1 {
+    font-size: 3rem;
+  }
+  section h2 {
+    font-size: 1.5rem;
+  }
+  section h3 {
+    font-size: 1.1rem;
+  }
+}
+
+/* 7. Add a little instruction styling */
+.instructions {
+  font-family: 'Roboto', Arial, sans-serif;
+  text-align: center;
+  color: #0068b5;
+  font-size: 1rem;
+  margin: 2rem 0 1rem 0;
+}
+
+/* 8. Accessibility: Show description on focus for keyboard users */
+section > div:focus-within p {
+  display: block;
+}
